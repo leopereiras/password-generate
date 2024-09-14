@@ -35,14 +35,3 @@ String generatePassword({
   }
   return password.toString();
 }
-
-void main() {
-  final password = generatePassword(
-    length: 3,
-    hasLowerCase: false,
-    hasNumbers: false,
-    hasSpecials: false,
-    hasUpperCase: true,
-  );
-  print(password);
-}
