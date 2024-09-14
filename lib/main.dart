@@ -1,3 +1,6 @@
+import 'dart:typed_data';
+
+import 'package:file_selector/file_selector.dart';
 import 'package:flutter/material.dart';
 import 'package:password_generate/password_generate.dart';
 
@@ -50,6 +53,27 @@ class _PasswordGeneratorScreenState extends State<PasswordGeneratorScreen> {
     });
   }
 
+// Save file
+  Future<void> saveFile() async {
+    const String fileName = 'suggested_name.txt';
+
+    final FileSaveLocation? result =
+        await getSaveLocation(suggestedName: fileName);
+
+    if (result == null) {
+      return;
+    }
+
+    final Uint8List fileData =
+        Uint8List.fromList(lastFivePasswords.toString().codeUnits);
+    const String mimeType = 'text/plain';
+
+    final XFile textFile =
+        XFile.fromData(fileData, mimeType: mimeType, name: fileName);
+
+    await textFile.saveTo(result.path);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -88,7 +112,6 @@ class _PasswordGeneratorScreenState extends State<PasswordGeneratorScreen> {
               ),
             ),
           ),
-          // Posiciona os últimos 5 passwords no canto inferior direito
           Positioned(
             right: 10,
             bottom: 10,
@@ -113,9 +136,11 @@ class _PasswordGeneratorScreenState extends State<PasswordGeneratorScreen> {
           Positioned(
             right: 10,
             child: Column(children: [
-              // TODO(): Export
               ElevatedButton(
-                  onPressed: () {}, child: const Icon(Icons.download)),
+                  onPressed: () {
+                    saveFile();
+                  },
+                  child: const Icon(Icons.download)),
               const Text('Export last 5 passwords'),
             ]),
           ),
