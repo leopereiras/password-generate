@@ -1,5 +1,5 @@
 import 'package:test/test.dart';
-import '../bin/password_generate.dart';
+import 'package:password_generate/password_generate.dart';
 
 void main() {
   group('Password Generator Tests', () {
