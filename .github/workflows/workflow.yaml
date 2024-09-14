@@ -21,8 +21,8 @@ jobs:
       channel: stable
       flutter-version: 3.24.2
 
-      - name: Install dependencies
-        run: dart pub get
+    - name: Install dependencies
+      run: dart pub get
 
-      - name: Run tests
-        run: dart test
+    - name: Run tests
+      run: dart test
