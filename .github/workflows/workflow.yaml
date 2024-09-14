@@ -18,8 +18,8 @@ jobs:
       - name: Flutter Environment
         uses: subosito/flutter-action@v2
         with:
-        channel: stable
-        flutter-version: 3.24.2
+          channel: stable
+          flutter-version: 3.24.2
 
       - name: Install dependencies
         run: dart pub get
