@@ -1,2 +1,10 @@
 .dart_tool/
-/build/
+.build/
+.macos/Pods/
+build/
+Pods/
+DerivedData/
+*.xcworkspace
+xcuserdata/
+*.xcuserstate
+*.log
